@@ -1,39 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import firebase from 'expo-firebase-app';
-import 'firebase/firestore';
-import 'firebase/auth';
-import 'firebase/storage';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import HomeScreen from './screens/HomeScreen';
+import StudentListScreen from './screens/StudentListScreen';
+import AddStudentScreen from './screens/AddStudentScreen';
+import EditStudentScreen from './screens/EditStudentScreen';
+
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="StudentList" component={StudentListScreen} />
+        <Stack.Screen name="AddStudent" component={AddStudentScreen} />
+        <Stack.Screen name="EditStudent" component={EditStudentScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-const firebaseConfig = {
-  // Vos informations de configuration Firebase
-  apiKey: 'AIzaSyB-XWsOy0f1tZNkT6mtQ7zkDj3bXYSnsvQ',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  projectId: 'appreactnative-a9f79',
-  storageBucket: 'Yappreactnative-a9f79.appspot.com',
-  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-  appId: 'YOUR_APP_ID',
 };
 
-// Vérifiez si Firebase est déjà initialisé pour éviter les erreurs
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+export default App;
